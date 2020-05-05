@@ -33,30 +33,35 @@
 .obamaCutOut {
   position: absolute;
   width: 287px;
-  left: 490px;
-  top: 303px;
+  left: -4px;
+  top: 190px;
 }
 
 .leftPoster {
   width: 91px;
   position: absolute;
-  left: 569px;
-  top: 269px;
+  left: 73px;
+  top: 153px;
 }
 
 .middlePoster {
   width: 115px;
   position: absolute;
-  left: 692px;
-  top: 259px;
+  left: 196px;
+  top: 143px;
 }
 
 .rightPoster {
   width: 91px;
   position: absolute;
-  left: 838px;
-  top: 269px;
+  left: 342px;
+  top: 153px;
 }
+
+.img-wrapper{
+  position: relative;
+}
+
 
 .App {
   text-align: center;
