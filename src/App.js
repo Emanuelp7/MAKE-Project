@@ -12,9 +12,22 @@ class App extends Component {
     super(props);
     this.state = {
       loading: false,
+      imgIndex:0,
+      imgs:['TheLionKing.jpg','ShutterIsland.jpg','PulpFiction.jpg']
     }
 
     this.cancel = '';
+    this.imageSelect = this.imageSelect.bind(this)
+  }
+
+  imageSelect(imgURL){
+    console.log('Selected: '+imgURL)
+    var tmp = [ ...this.state.imgs]; //make a new copt of array in image links
+    tmp[this.state.imgIndex] = imgURL;
+    this.setState({
+      imgIndex:((this.state.imgIndex+1)%3), //Add 1 to index and get the remainder of index/3 (index%3)
+      imgs:tmp
+    });
   }
   // Takes the searchterm and attatches it url for querying
   performSearch(searchTerm) {
@@ -34,7 +47,8 @@ class App extends Component {
         results.forEach((movie) => {
           movie.poster_src = "https://image.tmdb.org/t/p/w188_and_h282_bestv2" + movie.poster_path
           console.log(movie.poster_path)
-          const movieRow = <MovieRow key={movie.id} movie={movie} />
+          //passed imageselect fuction to MovieRow component onSelect={this.imageSelect}
+          const movieRow = <MovieRow key={movie.id} movie={movie} onSelect={this.imageSelect}/> 
 
           // For each movie results, a row is created 
           movieRows.push(movieRow)
@@ -80,9 +94,9 @@ class App extends Component {
               <tr>
                 <div className='img-wrapper'>
                   <img id="obamaImage" alt="background" className="obamaImage" src="Obama Final.png" />
-                  <img id="leftPoster" alt="left" className="leftPoster" src="TheLionKing.jpg" />
-                  <img id="middlePoster" alt="middle" className="middlePoster" src="ShutterIsland.jpg" />
-                  <img id="rightPoster" alt="right" className="rightPoster" src="PulpFiction.jpg" />
+                  <img id="leftPoster" alt="left" className="leftPoster" src={this.state.imgs[0]} />
+                  <img id="middlePoster" alt="middle" className="middlePoster" src={this.state.imgs[1]} />
+                  <img id="rightPoster" alt="right" className="rightPoster" src={this.state.imgs[2]}/>
                   <img id="obamaCutOut" alt="obamacutout" className="obamaCutOut" src="ObamaCutOut.png" />
                 </div>
               </tr>

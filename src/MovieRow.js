@@ -15,7 +15,9 @@ class MovieRow extends React.Component{
               <p>{this.props.movie.title}</p>
               <p>{this.props.movie.release_date}</p>
               {/* Add onClick value to button to select image to go onto the poster position */}
-              <input type = "button" value="Select"/>
+              {/*  This runs an anonymous fuinction "()=>{}" within this function the onSelect function is executed
+               as shown here onClick={()=>{this.props.onSelect(this.props.movie.poster_src)}} */}
+              <input type = "button" value="Select" onClick={()=>{this.props.onSelect(this.props.movie.poster_src)}}/>
             </td>
             <td>
               <p>{this.props.movie.overview}</p>
